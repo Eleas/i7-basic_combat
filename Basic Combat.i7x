@@ -263,7 +263,7 @@ Setting action variables for throwing something at:
 	let n be a roll of the damage potential of the noun;
 	now the projectile damage dealt is n.
 
-Check an actor throwing something at when the noun is not targetable (this is the block throwing it at rule): say "Throwing [regarding the noun][those] at [the second noun] would accomplish little." instead.
+Check an actor throwing something at when the second noun is not targetable (this is the block throwing it at rule): say "Throwing [regarding the noun][those] at [the second noun] would accomplish little." instead.
 
 Check someone throwing something at when the actor does not hold a throwable thing (this is the actor lacks suitable projectile rule): 
 	stop the action.
