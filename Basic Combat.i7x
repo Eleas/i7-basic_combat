@@ -296,40 +296,6 @@ Last carry out an actor throwing something at (this is the standard report throw
 	say "[The actor] [throw] [the noun] at [if the second noun is the player][us][otherwise][the second noun][end if], striking [them]." (B).
 
 
-Chapter - Actual Fighting
-
-[Invariant: there's only one fight scene happening at any given moment.]
-Fighting relates people to each other. The verb to fight means the fighting relation.
-Instead of violence when the actor is not fighting the noun and 
-	the actor is not dead and 
-	the noun is not dead and 
-	the noun is a person and
-	the actor is not the noun (this is the picking a fight rule):
-	now the actor fights the noun.
-
-Battle is a recurring scene. Battle begins when someone is fighting someone. 
-Battle ends when the player fights a person who is dead.
-
-When Battle begins: 
-	follow the battle setup rules.
-	
-When Battle ends:
-	follow the battle conclusion rulebook;
-	now the player does not fight anyone.
-
-The battle setup rules is a rulebook. A battle setup rule (this is the default battle setup rule): say "Let's you and [the noun] FIGHT!" (A).
-The battle conclusion rules is a rulebook. A battle conclusion rule (this is the default battle conclusion rule): say "The battle is over; [the just-killed-person] lies slain." (A);
-
-Every turn when Battle is happening and the time since Battle began is at least 1 minute (this is the standard fighting back rule):
-	let mook be a random person fighting the player;
-	let c be the action name part of the current action;
-	if c is not the examining action and c is not the taking inventory action and c is not the looking action:
-		if the mook carries a weapon (called arm) and the mook does not wield the arm:
-			try the mook equipping the arm;
-		otherwise if the mook wields a weapon:
-			try the mook attacking the player.
-
-
 Chapter - Death
 
 Section - The player and other people dying
@@ -463,7 +429,52 @@ Example: ** Predictable -- Tweaking the extension to use fixed damage.
 
 	Test me with "wield katana/kill Tom/g/x tom/kill Tom".
 
-Although simplistic, this behavior may suffice for some games.
+Although simplistic, this behavior may suffice for some games. Often, however, it's desirable to have combat occur in its own space (a fight scene, if you will). A possible implementation is here:
+
+Example: *** The Ring of Death -- Scene-based fighting.
+	*: "The Ring of Death"
+
+	Include Basic Combat by B David Paulsen.
+	When play begins, seed the random-number generator with 1. 
+
+	[Invariant: there's only one fight scene happening at any given moment.]
+	Fighting relates people to each other. The verb to fight means the fighting relation.
+	Instead of violence when the actor is not fighting the noun and 
+		the actor is not dead and 
+		the noun is not dead and 
+		the noun is a person and
+		the actor is not the noun (this is the picking a fight rule):
+		now the actor fights the noun.
+
+	Battle is a recurring scene. Battle begins when someone is fighting someone. 
+	Battle ends when the player fights a person who is dead.
+
+	When Battle begins: 
+		follow the battle setup rules.
+		
+	When Battle ends:
+		follow the battle conclusion rulebook;
+		now the player does not fight anyone.
+
+	The battle setup rules is a rulebook. A battle setup rule (this is the default battle setup rule): say "Let's you and [the noun] FIGHT!" (A).
+	The battle conclusion rules is a rulebook. A battle conclusion rule (this is the default battle conclusion rule): say "The battle is over; [the just-killed-person] lies slain." (A);
+
+	Every turn when Battle is happening and the time since Battle began is at least 1 minute (this is the standard fighting back rule):
+		let mook be a random person fighting the player;
+		let c be the action name part of the current action;
+		if c is not the examining action and c is not the taking inventory action and c is not the looking action:
+			if the mook carries a weapon (called arm) and the mook does not wield the arm:
+				try the mook equipping the arm;
+			otherwise if the mook wields a weapon:
+				try the mook attacking the player.
+
+	Tom is a man. The health of Tom is 10 HP.
+	The katana is a blade. The player carries the katana.
+
+	There is a room. Tom is here.
+
+	Test me with "wield katana/kill Tom/g/x tom/kill Tom".
+	
 
 Inanimate objects can also be targeted and destroyed. By default, this is permitted only if the object is tagged as being "targetable" (people are automatically targetable, but if you want to make a person impossible to hurt, you can do that by making them not targetable).
 
