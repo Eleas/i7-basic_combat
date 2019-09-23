@@ -67,7 +67,7 @@ Chapter - Hit point definition
 Hit points is a kind of value. 99 HP specifies hit points. 
 A thing has some hit points called health. 
 A thing has some hit points called maximum health.
-The maximum health of a person is usually 10.
+The maximum health of a person is usually 10 HP.
 
 First when play begins (this is the basic setting the health of actors rule):
 	repeat with item running through things:
