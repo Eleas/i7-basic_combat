@@ -67,6 +67,7 @@ Chapter - Hit point definition
 Hit points is a kind of value. 99 HP specifies hit points. 
 A thing has some hit points called health. 
 A thing has some hit points called maximum health.
+The maximum health of a person is usually 10.
 
 First when play begins (this is the basic setting the health of actors rule):
 	repeat with item running through things:
@@ -96,13 +97,18 @@ To decide which hit points is a roll of (pool - a die roll):
 
 A thing has a die roll called damage potential. The damage potential of a thing is usually 3D6.
 
+
 Chapter - Printing out health status
 
+A thing has a table name called the damage level descriptor. 
+The damage level descriptor of a thing is usually the Table of Default Damage Level.
+The damage level descriptor of a person is usually the Table of Default Health Level.
+
 To decide which text is the printed health of (x - a thing):
-	repeat through the Table of Health Level in reverse order:
+	repeat through the damage level descriptor of the x in reverse order:
 		if the health limit entry is at least the health in percent of x, decide on the text entry.
 
-Table of Health Level
+Table of Default Health Level
 health limit (a number)	text (a text)
 100	"in perfect health"
 80	"slightly hurt"
@@ -110,7 +116,15 @@ health limit (a number)	text (a text)
 40	"severely wounded"
 20	"near death"
 
-Report examining a targetable person (this is the display health level rule):
+Table of Default Damage Level
+health limit (a number)	text (a text)
+100	"pristine"
+80	"slightly chipped"
+60	"cracked"
+40	"battered and listing badly"
+20	"hanging together by a thread"
+
+Report examining a targetable thing (this is the display health level rule):
 	say "[regarding the noun][They] [are] [printed health of the noun]." (A).
 
 
@@ -458,23 +472,6 @@ Example: ** Uncivilized -- Attacking inanimate things
 
 	Include Basic Combat by B David Paulsen.
 	When play begins, seed the random-number generator with 1. 
-
-	After examining a targetable thing which is not a person (this is the display damage level rule):
-		say "[regarding the noun][They] [are] [printed health-level of the noun]." (A).
-
-	To decide which text is the printed health-level of (x - a thing):
-		repeat through the Table of Health-Level in reverse order:
-			if the health limit entry is at least the health in percent of x:
-				decide on the text entry.
-
-	Table of Health-Level
-	health limit (a number)	text (a text)
-	100	"pristine"
-	80	"slightly chipped"
-	60	"cracked"
-	40	"battered and listing badly"
-	20	"hanging together by a thread"
-
 
 	The target is targetable. The health of the target is 18 HP.
 	Some wreckage is a thing.
